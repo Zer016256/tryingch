@@ -36,14 +36,40 @@
 header {
   display: flex;
   flex-wrap: wrap;
-  width: 100vw;
+  justify-content: flex-end;
+  align-items: center;
+  width: 99vw;
   height: 50px;
-}
 
+  & #links {
+    display: flex;
+    gap: 5px;
+    justify-content: flex-end;
+    align-items: center;
+    margin-right: 20px;
+  }
+
+  & li {
+    list-style: none;
+    font-size: 1.2rem;
+    color: white;
+
+    & a {
+      text-decoration: none;
+      color: white;
+      text-transform: uppercase;
+    }
+  }
+
+  & #svg {
+    display: none;
+  }
+}
 /* main */
 
 main {
   display: flex;
+  width: 99vw;
   flex-wrap: wrap;
   justify-content: flex-start;
   align-items: flex-start;
@@ -84,67 +110,41 @@ main {
       color: white !important;
       font-weight: bold;
     }
+
+    & a {
+      color: grey;
+      text-decoration: none;
+
+      &:hover {
+        color: white;
+      }
+    }
   }
 
   & .main__img {
+    margin-top: 10%;
     width: 100%;
-    height: auto;
     display: flex;
     flex-wrap: wrap;
 
     & img {
-      width: 50%;
-      height: auto;
+      width: 100%;
     }
+  }
+
+  &::selection {
+    background-color: yellow;
+    color: white;
   }
 }
 
-/* footer {
-  display: flex;
-  flex-wrap: wrap;
-  padding: 20px;
-  justify-content: center;
-  align-items: center;
-  width: 100vw;
-  gap: 20px;
-  height: auto;
-
-  & img {
-    width: 100px;
-    height: auto;
-    margin-right: 20px;
-    background-color: transparent !important;
-  }
-
-  & .footer__socialmedia {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-
-    & .links {
-      display: flex;
-      cursor: pointer;
-      gap: 10px;
-      transition: color 0.3s ease;
-
-      & li {
-        list-style: none;
-      }
-
-      & a {
-        color: black !important;
-        text-decoration: none;
-      }
-    }
-  }
-} */
 
 footer {
   display: grid;
-  width: 100vw;
+  width: 99vw;
   padding: 10px;
-  gap: 10px;
-  height: 15vh;
+  gap: 5px;
+  height: 18vh;
   grid-template-columns: 1fr 1.5fr 2fr 1fr;
   grid-template-rows: 2fr 2fr;
   grid-template-areas: 
@@ -169,7 +169,7 @@ footer {
     flex-wrap: wrap;
     align-items: center;
     grid-area: column2;
-    gap: 10px;
+    gap: 5px;
   }
 
   & .head {
@@ -193,7 +193,7 @@ footer {
       display: flex;
       cursor: pointer;
       flex-wrap: wrap;
-      gap: 30px;
+      gap: 20px;
       transition: color 0.3s ease;
 
       & li {
@@ -206,8 +206,7 @@ footer {
 
         &:hover {
           color: red;
-          font-size: 1.2rem;
-          transition: color font-size 0.3s ease;
+          transition: color 0.3s ease;
         }
       }
     }
@@ -217,8 +216,9 @@ footer {
     grid-area: column4;
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
+    align-items: flex-end;
     justify-content: center;
+    position: relative; 
 
     & .btn__need{
       padding: 10px 40px;
@@ -246,6 +246,76 @@ footer {
   }
 }
 
+/* CSS-only solution using the checkbox hack */
+#chat-toggle {
+  display: none; /* Hide the checkbox */
+}
+
+/* When checkbox is checked, show the chat */
+#chat-toggle:checked ~ .ai__chat {
+  height: 300px;
+  padding: 20px;
+}
+
+/* Style for when button is active - optional */
+#chat-toggle:checked ~ label.btn__need {
+  background-color: red;
+  color: white !important;
+}
+
+#chat-toggle:checked ~ label.btn__need .st0 {
+  fill: white;
+}
+
+/* AI Chat styling */
+.ai__chat {
+  position: absolute;
+  border-radius: 10px;
+  bottom: 50px;
+  right: 0;
+  height: 0; /* Start with zero height */
+  background-color: white;
+  width: 330px;
+  overflow: hidden;
+  transition: height 0.3s ease;
+  z-index: 100; /* Increased z-index to make sure it appears on top */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+
+  & img {
+    width: 80px;
+    height: auto;
+    margin-bottom: 10px;
+  }
+
+  & p {
+    margin: 10px 0;
+    color: blue;
+    text-align: center;
+  }
+
+  & .btn__chat {
+    padding: 8px 20px;
+    background-color: white;
+    border: 1px solid red;
+    color: black;
+    border-radius: 15px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: red;
+      transition: background-color 0.3s ease;
+      color: white!important;
+    }
+  }
+}
+
 /* img disable*/
 img {
   pointer-events: none;
@@ -254,6 +324,37 @@ img {
 
 /* media screen */
 @media screen and (max-width: 1000px) {
+
+  .ai__chat {
+    bottom: 60px;
+    z-index: 0;
+    width: 270px;
+    left: 6rem;
+    display: flex;
+    flex-direction: column;
+    width: inset;
+  }
+
+  /* When checkbox is checked, show the chat */
+  #chat-toggle:checked ~ .ai__chat {
+    height: 270px;
+    padding: 5px !important;
+  }
+
+  header li{
+    font-size: 0.8rem;
+  }
+
+  & #links #svg {
+    width: 40px;
+    height: 40px;
+    display: block;
+  }
+
+  & #links #login {
+    display: none;
+  }
+  
   main {
     display: flex;
     flex-wrap: wrap;
@@ -264,31 +365,31 @@ img {
     gap: 30px;
 
     & .front__title {
-        font-size: 2rem;
+        font-size: 1.5rem;
         margin-left: 20px;
-        line-height: 70px;
+        line-height: 50px;
     }
 
     & .front__subtitle{
         text-align: justify;
-        font-size: 0.8rem;
+        font-size: 0.7rem;
         margin-left: 20px;
     }
 
     & .btn__create {
       margin-left: 20px;
+      padding: 5px 20px;
+      font-size: 0.8rem;
       
     }
 
     & .main__img {
-      width: 100%;
-      height: 20vh;
+      height: 18vh;
       display: flex;
       flex-wrap: wrap;
   
       & img {
-        width: 50%;
-        height: auto;
+        width: 100%;
       }
     }
   }
@@ -298,7 +399,7 @@ img {
     background-color: rgb(211, 238, 248);
     height: 60vh;
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 0.3fr 0.2fr 0.3fr 0.5fr 0.3fr;
     grid-template-areas: 
       "column1"
       "column2"
@@ -307,24 +408,30 @@ img {
       "column4";
   }
 
-    &.footer__img{
+    & .footer__img{
       grid-area: column1;
+
+      & img {
+        width: 60px !important;
+        height: auto !important;
+      }
     }
 
     & .footer__address{
       grid-area: column2;
       display: flex;
       flex-wrap: wrap;
+      font-size: 0.9rem;
       justify-content: center;
-      align-items: end;
+      align-items: end !important;
     }
 
     & .head {
       grid-area: column3;
       display: flex;
-      font-size: 1.3rem;
-      align-items: center;
-      justify-content: start;
+      font-size: 1rem;
+      align-items: center !important;
+      justify-content: center !important;
     }
 
     & .footer__socialmedia{
@@ -340,13 +447,48 @@ img {
         flex-wrap: wrap;
         flex-direction: column;
         line-height: 10px;
+
+        & li {
+          font-size: 0.8rem;
+        }
       }
     }
-    
+
     & .button {
       grid-area: column4;
+      display: flex;
+      justify-content: center;
+      align-items: center !important;
+      font-size: 0.5rem;
+      color: black!important;
+      transition: background-color 0.3s ease;
+
+      & .btn__need{
+        padding: 8px 15px !important;
+        font-size: 0.8rem !important;
+
+        & svg {
+          width: 13px !important;
+          height: 15px !important;
+        }
+      }
     }
 }
 
-  
+/* media screen for tablet */
+@media screen and (max-width: 768px) {
+  .ai__chat {
+    bottom: 80px;
+    width: 270px;
+    display: flex;
+    left: 30%;
+    flex-direction: column;
+  }
+
+  /* When checkbox is checked, show the chat */
+  #chat-toggle:checked ~ .ai__chat {
+    height: 270px;
+    padding: 5px !important;
+  }
+}
 

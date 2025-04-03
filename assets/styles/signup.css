@@ -1,3 +1,4 @@
+
 * {
   margin: 0;
   padding: 0;
@@ -5,39 +6,359 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 
-
-.container {
-  width: 100vw;
+body {
   height: 100vh;
+  background-image: url("../img/Screenshot\ 2025-03-11\ 104403.png");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+/* Modified */
+.blue {
+  color: rgb(14, 14, 204);
+}
+
+.red {
+  color: red;
+}
+
+.lightblue {
+  color: lightblue;
+}
+
+.font {
+  font-size: 1rem !important;
+}
+
+.mobile,.email {
+
+  & input::placeholder {
+    color: grey !important;
+  }
+}
+
+/* image Dissabled */
+img {
+  pointer-events: none;
+}
+
+/* layoutssssssssss===================================================== */
+
+/* Container============================================================= */
+.container {
+  border: none;
+  box-shadow: 0 0 20px rgba(7, 7, 7, 0.6);
+  display: flex;
+  flex-direction: column;
+  width: 85vw;
+  padding-left: 8%;
+  padding-right: 8%;
+  background-color: white;
+  min-height: 90vh;
+
+  & .first__image, .second__image{
+    width: 80px;
+    height: 80px;
+    
+    & img{
+      width: 100%;
+      height: auto;
+    }
+  }
+}
+
+/* header============================================================= */
+.header { 
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(4, 1fr);
-  gap: 0px;
-}
-  
-header {
-  grid-column: span 4 / span 4;
-  border: 1px solid red;
+  align-self: center;
+  margin-top: 10px;
+  column-gap: 10px;
+  row-gap: 30px;
+  grid-template-columns: 0.3fr 1fr 0.3fr;
+  grid-template-rows: repeat(2, 0.1fr);
+  grid-template-areas: 
+    "logo title logo2"
+    "heading heading heading";
+
+    & .first__image {
+      grid-area: logo;
+      align-items: center;
+    }
+
+    & .title {
+      grid-area: title;
+      display: flex;
+      flex-direction: column;
+      line-height: 38px;
+      align-items: center;
+      font-size: 1.2rem;
+    }
+
+    & .second__image {
+      grid-area: logo2;
+    }
+
+    & .head {
+      grid-area: heading;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+
+      & h2 {
+        font-size: 1.6rem;
+        text-transform: uppercase;
+      }
+
+      & p {
+        font-size: 1.2rem;
+      }
+    }
 }
 
-.aside {
-  grid-column: span 2 / span 2;
-  grid-row: span 2 / span 2;
-  grid-row-start: 2;
-  border: 1px solid red;
-}
+/* form============================================================= */
 
-.form-container{
-  grid-column: span 2 / span 2;
-  grid-row: span 2 / span 2;
-  grid-column-start: 3;
-  grid-row-start: 2;
-  border: 1px solid red;
+.form {
+  margin-top: 10px;
+  gap: 10px;
+  display: flex;
+  flex-direction: row;
+
+  & label {
+    display: flex;
+    flex-wrap: wrap;
+    width: 15vw;
+    text-align: left;
+    font-size: 1rem;
+    color: black;
+    font-weight: bold;
+  }
+
+  & input {
+    display: flex;
+    width: 20vw;
+    padding: 8px;
+    border: 2px solid grey;
+    outline: none;
+    border-radius: 10px;
+    font-size: 0.8rem;
+    transition: all 0.3s ease;
+
+    &:focus {
+      border: 2px solid blue;
+    }
+
+    &::placeholder {
+      color: red;
+    }
+  }
+
+  & .form__group {
+    margin-top: 8px;
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+  }
+
+  & .personal__info {
+    width: 50%;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  & .account__info {
+    width: 50%;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  & h2 {
+    font-size: 1.4rem;
+    text-align: center;
+  }
 }
 
 .footer {
-  grid-column: span 4 / span 4;
-  grid-row-start: 4;
-  border: 1px solid red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 20px;
+  gap: 10px;
+
+  & p {
+    width: 60vw;
+    font-size: 0.9rem;
+    text-align: center;
+  }
+
+  & .Btn__Signup {
+    background-color: red;
+    color: white;
+    width: 60vw;
+    padding: 10px 10px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background-color: white;
+      color: red;
+      border: 1px solid red;
+    }
+  }
+
+  & a {
+    color: red;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
 }
+
+/* Media Queries============================================================= */
+@media screen and (max-width: 1000px) {
+
+  .container {
+    width: 90vw;
+    flex-direction: column;
+    margin-top: 20%;
+
+    & .first__image, .second__image{
+      width: 50px;
+      height: 50px;
       
+      & img{
+        width: 100%;
+        height: auto;
+      }
+    }
+  }
+
+  .header {
+    column-gap: 5px;
+    
+    & .title {
+      font-size: 0.6rem;
+    }
+
+    & h3 {
+      font-size: 0.4rem;
+    }
+
+    & .head {
+      & h2 {
+        font-size: 1.2rem;
+      }
+
+      & p {
+        font-size: 0.7rem;
+      }
+    }
+
+    & .font {
+      font-size: 0.6rem !important;
+    }
+
+  }
+
+
+  .form {
+    flex-direction: column;
+    gap: 10px;
+
+    & label {
+      width: 100%;
+      text-align: left;
+      font-size: 0.8rem;
+    }
+
+    & input {
+      width: 100%;
+      padding: 5px;
+      font-size: 0.7rem;
+    }
+
+    & .form__group {
+      margin-top: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+  
+    & .personal__info {
+      width: 100%;
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+  
+    & .account__info {
+      width: 100%;
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    & h2 {
+      font-size: 1rem;
+    }
+    
+  }
+
+ .footer {
+    margin-top: 10px;
+    gap: 10;
+    margin-bottom: 20px;
+    flex-direction: column;
+
+    & p {
+      width: 100%;
+      font-size: 0.7rem;
+    }
+
+    & .Btn__Signup {
+      width: 100%;
+      padding: 5px 5px;
+      font-size: 0.8rem;
+    }
+  }
+}
+
+
+@media screen and (max-width: 400px) {
+  .container {
+    width: 90vw !important;
+    margin-top: 70% !important;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .container {
+    width: 90vw !important;
+    margin-top: 30% !important;
+  }
+}
+
+/* Responsive for mobile devices */
+
+@media screen and (max-width: 600px) {
+  .container {
+    width: 90vw !important;
+    margin-top: 70% !important;
+  }
+}
+
+
+
